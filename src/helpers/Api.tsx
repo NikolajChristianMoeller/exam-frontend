@@ -25,7 +25,6 @@ export default class Api {
             },
             body: JSON.stringify(body)
         });
-
         return response.json();
     }
 

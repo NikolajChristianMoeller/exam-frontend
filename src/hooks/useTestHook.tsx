@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Api from "../helper/Api";
+import Api from "../helpers/Api";
 
 type Tdata = {
     id: number,
@@ -13,7 +13,7 @@ export default function useTestHook() {
     const getData = async () => {
         try {
             setIsLoading(true);
-            const { data: res } = await Api.get("test");
+            const { data: res } = await Api.get("skabelon");
             setData(res);
         } catch (e) {
             console.error(e);
