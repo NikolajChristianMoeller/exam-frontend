@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
 import Api from "../helpers/Api";
-
-type Tdata = {
-    id: number,
-    name: string
-}[];
+import type {Tdata} from "../types/test.type.ts";
 
 export default function useTestHook() {
-    const [data, setData] = useState<Tdata>([]);
+    const [data, setData] = useState<Tdata[]>([]);
     const [isLoading, setIsLoading] = useState<null | boolean>(null);
 
     const getData = async () => {
         try {
             setIsLoading(true);
-            const { data: res } = await Api.get("skabelon");
+            const res  = await Api.get("skabelons");
             setData(res);
         } catch (e) {
             console.error(e);
@@ -23,12 +19,54 @@ export default function useTestHook() {
         }
     }
 
+    const createTestData = async (data: Tdata): Promise<void> => {
+        try {
+            setIsLoading(true)
+            const res = await Api.post("skabelons", data);
+            setData((prev) => [...prev, res]);
+        } catch (e) {
+            console.error(e);
+            throw  e;
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    const updateTestData = async (data: Tdata): Promise<void> => {
+        setIsLoading(true);
+        try {
+            const res = await Api.put('skabelons', data.id, data);
+            setData((prev) => prev.map((item) => (item.id === res.id ? res : item)));
+        } catch (error) {
+            console.error(error)
+            throw error;
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    const deleteData = async (id: number): Promise<void> => {
+        try {
+            setIsLoading(true)
+            await Api.delete("skabelons", id);
+            setData((prev) => prev.filter((item) => item.id !== id));
+        } catch (e) {
+            console.error(e);
+            throw  e;
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     useEffect(() => {
         getData();
-    }, [data]);
+    }, []);
 
     return {
         data,
-        isLoading
+        isLoading,
+        createTestData,
+        deleteData,
+        updateTestData
     }
 }
