@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import FallBack from "./pages/FallBack"
-import TestPage from "./pages/TestPage"
 import Navbar from "./components/NavBar"
+import AdminPage from "./pages/AdminPage.tsx";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/testpage" element={<TestPage />} />
+        <Route path="/adminpage" element={<AdminPage />} />
         <Route path="/*" element={<FallBack />} />
       </Routes>
     </>

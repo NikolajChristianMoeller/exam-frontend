@@ -12,11 +12,7 @@ function Home() {
         >
             <h1>Welcome to Home Page</h1>
             <p>This is the Home page of the application.</p>
-            
-
-
         </Paper>
-    
     </>
   )
 }

@@ -5,8 +5,8 @@ import TestForm from "../components/TestForm.tsx";
 import {Tdata} from "../types/test.type.ts";
 import UpdateForm from "../components/UpdateForm.tsx";
 
-function TestPage() {
-    const { data, isLoading, createTestData, deleteData, updateTestData } = useTestHook();
+function AdminPage() {
+    const {data, isLoading, createTestData, deleteData, updateTestData } = useTestHook();
     const [open, setOpen] = useState<boolean>(false);
     const [selectedRow, setSelectedRow] = useState({})
     const [openPut, setOpenPut] = useState<boolean>(false);
@@ -40,7 +40,7 @@ function TestPage() {
                 }}
             >
                 <Button onClick={handleOpen}>
-                    Create new testData
+                    Create new participant
                 </Button>
                 <TableContainer component={Paper}>
                     <Table>
@@ -90,4 +90,4 @@ function TestPage() {
     )
 }
 
-export default TestPage
+export default AdminPage
