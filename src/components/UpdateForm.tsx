@@ -29,7 +29,7 @@ function UpdateForm ({openPut, handleClose, updateTestData, selectedRow}: update
                 open={openPut}
                 onClose={handleClose}
             >
-                <DialogTitle>Create testdata</DialogTitle>
+                <DialogTitle>Create Participant</DialogTitle>
                 <br />
                 <DialogContent>
                     <Grid
@@ -67,7 +67,7 @@ function UpdateForm ({openPut, handleClose, updateTestData, selectedRow}: update
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleUpdate}>update</Button>
+                    <Button onClick={handleUpdate}>Update</Button>
                 </DialogActions>
             </Dialog>
         </>

@@ -23,12 +23,10 @@ function TestPage() {
     const handleUpdateRow = (data: Tdata) => {
         setOpenPut(true);
         setSelectedRow(data)
-
     }
 
     const handleDelete = (data: Tdata) => {
         deleteData(data.id)
-
     }
 
     return (
@@ -49,10 +47,9 @@ function TestPage() {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name</TableCell>
-                                <TableCell> Age</TableCell>
-                                <TableCell> Delete</TableCell>
-                                <TableCell> Update</TableCell>
-
+                                <TableCell>Age</TableCell>
+                                <TableCell>Delete</TableCell>
+                                <TableCell>Update</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -67,7 +64,7 @@ function TestPage() {
                                         {data.age}
                                     </TableCell>
                                     <TableCell onClick={() =>handleDelete(data)}>
-                                       Delete
+                                        Delete
                                     </TableCell>
                                     <TableCell onClick={() => handleUpdateRow(data)}>
                                         Update

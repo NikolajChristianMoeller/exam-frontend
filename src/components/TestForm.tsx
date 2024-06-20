@@ -19,7 +19,7 @@ function TestForm ({open, handleClose, createTestData}:TestFormProps) {
             age
         }
 
-       createTestData(dataToBeCreated)
+        createTestData(dataToBeCreated)
         handleClose();
     }
 
@@ -29,7 +29,7 @@ function TestForm ({open, handleClose, createTestData}:TestFormProps) {
                 open={open}
                 onClose={handleClose}
             >
-                <DialogTitle>Create testdata</DialogTitle>
+                <DialogTitle>Create Participant</DialogTitle>
                 <br />
                 <DialogContent>
                     <Grid
