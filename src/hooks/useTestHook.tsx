@@ -9,7 +9,7 @@ export default function useTestHook() {
     const getData = async () => {
         try {
             setIsLoading(true);
-            const res  = await Api.get("skabelons");
+            const res  = await Api.get("participants");
             setData(res);
         } catch (e) {
             console.error(e);
@@ -22,7 +22,7 @@ export default function useTestHook() {
     const createTestData = async (data: Tdata): Promise<void> => {
         try {
             setIsLoading(true)
-            const res = await Api.post("skabelons", data);
+            const res = await Api.post("participants", data);
             setData((prev) => [...prev, res]);
         } catch (e) {
             console.error(e);
@@ -35,7 +35,7 @@ export default function useTestHook() {
     const updateTestData = async (data: Tdata): Promise<void> => {
         setIsLoading(true);
         try {
-            const res = await Api.put('skabelons', data.id, data);
+            const res = await Api.put('participants', data.id, data);
             setData((prev) => prev.map((item) => (item.id === res.id ? res : item)));
         } catch (error) {
             console.error(error)
@@ -48,7 +48,7 @@ export default function useTestHook() {
     const deleteData = async (id: number): Promise<void> => {
         try {
             setIsLoading(true)
-            await Api.delete("skabelons", id);
+            await Api.delete("participants", id);
             setData((prev) => prev.filter((item) => item.id !== id));
         } catch (e) {
             console.error(e);
