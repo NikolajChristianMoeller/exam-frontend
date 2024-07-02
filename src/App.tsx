@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
-import FallBack from "./pages/FallBack"
+import Home from "./container/Home"
+import FallBack from "./container/FallBack"
 import Navbar from "./components/NavBar"
-import AdminPage from "./pages/AdminPage.tsx";
+import AdminPage from "./container/AdminPage.tsx";
 
 function App() {
   return (
