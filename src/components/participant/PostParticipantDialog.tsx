@@ -134,8 +134,8 @@ function PostParticipantDialog({
                                     setGender(e.target.value as TGender)
                                 }
                             >
-                                {genderArr.map((gender) => (
-                                    <MenuItem value={gender}>{gender}</MenuItem>
+                                {genderArr.map((gender, index) => (
+                                    <MenuItem key={index} value={gender}>{gender}</MenuItem>
                                 ))}
                             </TextField>
                         </Grid>
@@ -155,8 +155,8 @@ function PostParticipantDialog({
                                     setCountry(e.target.value as TCountry)
                                 }
                             >
-                                {countriesArr.map((country) => (
-                                    <MenuItem value={country}>
+                                {countriesArr.map((country, index) => (
+                                    <MenuItem key={index} value={country}>
                                         {country}
                                     </MenuItem>
                                 ))}

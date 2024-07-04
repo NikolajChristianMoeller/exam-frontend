@@ -121,8 +121,8 @@ function PostResultDialog({
                                     )
                                 }
                             >
-                                {participants.map((par) => (
-                                    <MenuItem value={par.id}>
+                                {participants.map((par, index) => (
+                                    <MenuItem key={index} value={par.id}>
                                         {par.fullName}
                                     </MenuItem>
                                 ))}
@@ -166,8 +166,8 @@ function PostResultDialog({
                                     )
                                 }
                             >
-                                {discipline.map((dic) => (
-                                    <MenuItem value={dic.id}>
+                                {discipline.map((dic, index) => (
+                                    <MenuItem key={index} value={dic.id}>
                                         {dic.name}
                                     </MenuItem>
                                 ))}

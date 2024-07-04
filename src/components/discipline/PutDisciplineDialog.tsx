@@ -164,8 +164,8 @@ function PutDisciplineDialog({
                                     )
                                 }
                             >
-                                {resultsTypeArr.map((resultsType) => (
-                                    <MenuItem value={resultsType}>
+                                {resultsTypeArr.map((resultsType, index) => (
+                                    <MenuItem key={index} value={resultsType}>
                                         {resultsType}
                                     </MenuItem>
                                 ))}
