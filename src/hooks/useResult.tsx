@@ -32,6 +32,7 @@ function useResult() {
         try {
             const res = await Api.post("results", newResult);
             setResult((prev) => (prev ? [...prev, res] : [res]));
+            showSuccess("Result have been created");
         } catch (error) {
             handleError(error);
         } finally {

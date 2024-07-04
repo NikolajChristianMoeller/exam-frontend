@@ -1,12 +1,12 @@
-import { SnackbarProvider } from "notistack";
 import { stdTheme } from "./theme/theme.tsx";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
-import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar.tsx";
+import { Route, Routes } from "react-router-dom";
 import Home from "./containers/Home.tsx";
 import FallBack from "./containers/FallBack.tsx";
+import { SnackbarProvider } from "notistack";
+import { useEffect } from "react";
 import Discipline from "./containers/Discipline.tsx";
 import Result from "./containers/Result.tsx";
 import Participant from "./containers/Participant.tsx";

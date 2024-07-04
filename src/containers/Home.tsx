@@ -1,5 +1,13 @@
 import { stdTheme } from "../theme/theme.tsx";
-import { Container, IconButton, Link, Typography, Paper, Box, Tooltip } from "@mui/material";
+import {
+    Container,
+    IconButton,
+    Link,
+    Tooltip,
+    Typography,
+    Paper,
+    Box
+} from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi";
 
@@ -17,7 +25,7 @@ function Home() {
                     borderRadius: 2
                 }}
             >
-                <h1>Welcome to the Athletic Meeting</h1>
+                <h1>Welcome to the Athletic Meet</h1>
                 <Typography
                     variant="h6"
                     component="div"

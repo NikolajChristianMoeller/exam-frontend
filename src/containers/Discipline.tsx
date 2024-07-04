@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import { GridCellParams, DataGrid } from "@mui/x-data-grid";
-import { TDiscipline, TResultsType } from "../types/discipline.type.ts";
-import { TextField, Button, Paper, Typography } from "@mui/material";
-import LoadingSpinner from "../components/LoadingSpinner.tsx";
+import { useState } from "react";
+import { DataGrid, GridCellParams } from "@mui/x-data-grid";
 import useDiscipline from "../hooks/useDiscipline.tsx";
+import { Button, Paper, TextField, Typography } from "@mui/material";
+import LoadingSpinner from "../components/LoadingSpinner.tsx";
 import PostDisciplineDialog from "../components/discipline/PostDisciplineDialog.tsx";
+import { TDiscipline, TResultsType } from "../types/discipline.type.ts";
+
 import PutDisciplineDialog from "../components/discipline/PutDisciplineDialog.tsx";
 
 const resultsTypeArr: TResultsType[] = ["POINTS", "TIME", "DISTANCE"];
 
 function Discipline() {
-    const { discipline, isLoading, createDiscipline, updateDiscipline } = useDiscipline();
+    const { discipline, isLoading, createDiscipline, updateDiscipline } =
+        useDiscipline();
 
     const [searchText, setSearchText] = useState("");
     const [openPost, setOpenPost] = useState(false);
@@ -46,18 +48,15 @@ function Discipline() {
         setOpenPut(false);
     };
 
-    const handleSearchChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setSearchText(e.target.value);
-    };
-
     const columns = [
         { field: "name", headerName: "Name", width: 200 },
         { field: "description", headerName: "Description", width: 400 },
         { field: "resultsType", headerName: "Results Type", width: 200 },
         { field: "participants", headerName: "Participants", width: 600 },
-        { field: "update", headerName: "Update", width: 200,
+        {
+            field: "update",
+            headerName: "Update",
+            width: 200,
             renderCell: (params: GridCellParams) => (
                 <Button
                     variant="contained"
@@ -81,8 +80,8 @@ function Discipline() {
                 .includes(searchText.toLowerCase()) ||
             discipline.participants.some((participant) =>
                 participant.fullName
-                .toLowerCase()
-                .includes(searchText.toLowerCase())
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase())
             )
     );
 
@@ -109,7 +108,7 @@ function Discipline() {
                 }}
             >
                 <Typography sx={{ fontSize: "2em" }}>
-                    Discipline list and CRUD operations
+                    Discipline list and Crud operations
                 </Typography>
 
                 <br />
@@ -127,7 +126,7 @@ function Discipline() {
                         label="Search"
                         variant="outlined"
                         value={searchText}
-                        onChange={(e) => handleSearchChange(e)}
+                        onChange={(e) => setSearchText(e.target.value)}
                     />
 
                     <Button

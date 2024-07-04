@@ -1,6 +1,16 @@
-import { AppBar, Toolbar, Typography, IconButton, Box, Tooltip, useTheme } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+    Tooltip,
+    Box,
+    useTheme
+} from "@mui/material";
+import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
+
+import { useNavigate } from "react-router-dom";
 import SportsHandballIcon from "@mui/icons-material/SportsHandball";
 import SportsScoreIcon from "@mui/icons-material/SportsScore";
 import GroupIcon from "@mui/icons-material/Group";
@@ -61,7 +71,7 @@ export default function Navbar() {
                             <HomeIcon />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Discipline">
+                    <Tooltip title="Disciplines">
                         <IconButton
                             component={Link}
                             to="/discipline"
@@ -70,7 +80,7 @@ export default function Navbar() {
                             <SportsHandballIcon />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Result">
+                    <Tooltip title="Results">
                         <IconButton
                             component={Link}
                             to="/results"

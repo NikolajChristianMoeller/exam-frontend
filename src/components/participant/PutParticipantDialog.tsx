@@ -1,9 +1,27 @@
-import { ChangeEvent, useState, useEffect } from "react";
-import { TCountry, TGender, TParticipantCreateAndUpdate } from "../../types/participant.type.ts";
-import { SelectChangeEvent, Button, Select, Grid, MenuItem, DialogTitle, FormControl, InputLabel, Dialog, DialogActions, DialogContent, TextField } from "@mui/material";
+import { useEffect } from "react";
+import {
+    TCountry,
+    TGender,
+    TParticipantCreateAndUpdate
+} from "../../types/participant.type.ts";
+import { useState } from "react";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    SelectChangeEvent,
+    TextField
+} from "@mui/material";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import LoadingSpinner from "../LoadingSpinner.tsx";
 import useDiscipline from "../../hooks/useDiscipline.tsx";
+import LoadingSpinner from "../LoadingSpinner.tsx";
 
 type PutParticipantDialogProps = {
     open: boolean;
@@ -39,9 +57,11 @@ function PutParticipantDialog({
     const [age, setAge] = useState(0);
     const [gender, setGender] = useState<TGender>("OTHER");
     const [country, setCountry] = useState<TCountry>("DENMARK");
-    const [selectedDisciplines, setSelectedDisciplines] = useState<number[]>([]);
+    const [selectedDisciplines, setSelectedDisciplines] = useState<number[]>(
+        []
+    );
     const [adjacentClub, setAdjacentClub] = useState("");
-    const {discipline, isLoading: disciplineLoading} = useDiscipline();
+    const { discipline, isLoading: disciplineLoading } = useDiscipline();
 
     useEffect(() => {
         if (selectedParticipant) {
@@ -56,30 +76,6 @@ function PutParticipantDialog({
         }
     }, [selectedParticipant]);
 
-    const handleFullNameChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setFullName(e.target.value);
-    };
-
-    const handleAgeChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setAge(Number(e.target.value));
-    };
-
-    const handleGenderChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setGender(e.target.value as TGender);
-    };
-
-    const handleCountryChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setCountry(e.target.value as TCountry);
-    };
-
     const handleDisciplinesChange = (e: SelectChangeEvent<string[]>) => {
         const selectedDisciplineNames = e.target.value as string[];
         const selectedDisciplineIds = selectedDisciplineNames.map((name) => {
@@ -89,12 +85,6 @@ function PutParticipantDialog({
             return foundDiscipline ? foundDiscipline.id : -1;
         });
         setSelectedDisciplines(selectedDisciplineIds as number[]);
-    };
-
-    const handleAdjacentClubChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setAdjacentClub(e.target.value as string);
     };
 
     const handleUpdate = () => {
@@ -119,7 +109,7 @@ function PutParticipantDialog({
                 onClose={handleClose}
                 fullWidth
             >
-                <DialogTitle>Update participant</DialogTitle>
+                <DialogTitle>Update Participant</DialogTitle>
                 <br />
                 <DialogContent>
                     <Grid
@@ -131,12 +121,12 @@ function PutParticipantDialog({
                             xs={6}
                         >
                             <TextField
-                                label="FullName"
+                                label="Full Name"
                                 fullWidth
                                 variant="outlined"
                                 name="fullName"
                                 value={fullName}
-                                onChange={handleFullNameChange}
+                                onChange={(e) => setFullName(e.target.value)}
                             />
                         </Grid>
                         <Grid
@@ -150,7 +140,7 @@ function PutParticipantDialog({
                                 variant="outlined"
                                 name="age"
                                 value={age}
-                                onChange={handleAgeChange}
+                                onChange={(e) => setAge(Number(e.target.value))}
                             />
                         </Grid>
 
@@ -165,7 +155,9 @@ function PutParticipantDialog({
                                 variant="outlined"
                                 name="gender"
                                 value={gender}
-                                onChange={handleGenderChange}
+                                onChange={(e) =>
+                                    setGender(e.target.value as TGender)
+                                }
                             >
                                 {genderArr.map((gender) => (
                                     <MenuItem value={gender}>{gender}</MenuItem>
@@ -184,7 +176,9 @@ function PutParticipantDialog({
                                 variant="outlined"
                                 name="country"
                                 value={country}
-                                onChange={handleCountryChange}
+                                onChange={(e) =>
+                                    setCountry(e.target.value as TCountry)
+                                }
                             >
                                 {countriesArr.map((country) => (
                                     <MenuItem value={country}>
@@ -246,7 +240,9 @@ function PutParticipantDialog({
                                 variant="outlined"
                                 name="adjacentClub"
                                 value={adjacentClub}
-                                onChange={handleAdjacentClubChange}
+                                onChange={(e) =>
+                                    setAdjacentClub(e.target.value as string)
+                                }
                             />
                         </Grid>
                     </Grid>

@@ -1,5 +1,8 @@
-import type { TParticipant, TParticipantCreateAndUpdate } from "../types/participant.type.ts";
 import { useEffect, useState } from "react";
+import type {
+    TParticipant,
+    TParticipantCreateAndUpdate
+} from "../types/participant.type.ts";
 import useSuccess from "./useSuccess.tsx";
 import useError from "./useError.tsx";
 import Api from "../utils/Api.tsx";

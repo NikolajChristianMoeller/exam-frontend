@@ -1,9 +1,25 @@
-import { ChangeEvent, useState, useEffect } from "react";
-import { TDisciplineUpdate, TParticipantsInDiscipline, TResultsType } from "../../types/discipline.type.ts";
-import { Button, Select, Grid, MenuItem, DialogTitle, FormControl, InputLabel, Dialog, DialogActions, DialogContent, TextField } from "@mui/material";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import LoadingSpinner from "../LoadingSpinner.tsx";
 import useParticipant from "../../hooks/useParticipant.tsx";
+import { useEffect, useState } from "react";
+import {
+    TDisciplineUpdate,
+    TParticipantsInDiscipline,
+    TResultsType
+} from "../../types/discipline.type.ts";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField
+} from "@mui/material";
+import LoadingSpinner from "../LoadingSpinner.tsx";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 type TPostDisciplineDialogProps = {
     open: boolean;
@@ -32,12 +48,14 @@ function PutDisciplineDialog({
                                  resultsTypeArr,
                                  selectedDiscipline
                              }: TPostDisciplineDialogProps) {
-    const {participants, isLoading: participantsLoading} = useParticipant();
+    const { participants, isLoading: participantsLoading } = useParticipant();
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [resultsType, setResultsType] = useState<TResultsType>("POINTS");
-    const [selectedParticipants, setSelectedParticipants] = useState<number[]>([]);
+    const [selectedParticipants, setSelectedParticipants] = useState<number[]>(
+        []
+    );
 
     useEffect(() => {
         if (selectedDiscipline) {
@@ -51,18 +69,6 @@ function PutDisciplineDialog({
             }
         }
     }, [selectedDiscipline]);
-
-    const handleSetDescription = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setDescription(e.target.value as string);
-    };
-
-    const handleResultsTypeChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setResultsType(e.target.value as TResultsType);
-    };
 
     const handleUpdate = () => {
         const updatedDiscipline: TDisciplineUpdate = {
@@ -135,7 +141,9 @@ function PutDisciplineDialog({
                                 variant="outlined"
                                 name="description"
                                 value={description}
-                                onChange={(e) => handleSetDescription(e)}
+                                onChange={(e) =>
+                                    setDescription(e.target.value as string)
+                                }
                             />
                         </Grid>
 
@@ -150,7 +158,11 @@ function PutDisciplineDialog({
                                 variant="outlined"
                                 name="resultsType"
                                 value={resultsType}
-                                onChange={(e) => handleResultsTypeChange(e)}
+                                onChange={(e) =>
+                                    setResultsType(
+                                        e.target.value as TResultsType
+                                    )
+                                }
                             >
                                 {resultsTypeArr.map((resultsType) => (
                                     <MenuItem value={resultsType}>

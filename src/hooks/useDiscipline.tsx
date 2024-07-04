@@ -1,4 +1,8 @@
-import { TDiscipline, TDisciplineCreate, TDisciplineUpdate } from "../types/discipline.type.ts";
+import {
+    TDiscipline,
+    TDisciplineCreate,
+    TDisciplineUpdate
+} from "../types/discipline.type.ts";
 import { useEffect, useState } from "react";
 import useSuccess from "./useSuccess.tsx";
 import useError from "./useError.tsx";

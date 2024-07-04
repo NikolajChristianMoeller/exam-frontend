@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { GridCellParams, DataGrid } from "@mui/x-data-grid";
-import { TCountry, TGender, TParticipant } from "../types/participant.type.ts";
-import { TextField, Button, Paper, Typography } from "@mui/material";
-import LoadingSpinner from "../components/LoadingSpinner.tsx";
+import { DataGrid, GridCellParams } from "@mui/x-data-grid";
 import useParticipant from "../hooks/useParticipant.tsx";
+import LoadingSpinner from "../components/LoadingSpinner.tsx";
+import { Button, Paper, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 import PostParticipantDialog from "../components/participant/PostParticipantDialog.tsx";
+import { TCountry, TGender, TParticipant } from "../types/participant.type.ts";
 import PutParticipantDialog from "../components/participant/PutParticipantDialog.tsx";
 
 const genderArr: TGender[] = ["MALE", "FEMALE", "OTHER"];
@@ -210,7 +210,13 @@ const countriesArr: TCountry[] = [
 ];
 
 function Participant() {
-    const {participants, isLoading, createParticipant, deleteParticipant, updateParticipant} = useParticipant();
+    const {
+        participants,
+        isLoading,
+        createParticipant,
+        deleteParticipant,
+        updateParticipant
+    } = useParticipant();
     const [searchText, setSearchText] = useState("");
     const [openPost, setOpenPost] = useState(false);
     const [openPut, setOpenPut] = useState(false);
@@ -243,12 +249,6 @@ function Participant() {
         }
     };
 
-    const handleSearchChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setSearchText(e.target.value);
-    };
-
     const handleClose = () => {
         setOpenPost(false);
         setOpenPut(false);
@@ -266,7 +266,10 @@ function Participant() {
         { field: "ageGroup", headerName: "Age Group", width: 150 },
         { field: "country", headerName: "Country", width: 150 },
         { field: "disciplines", headerName: "Disciplines", width: 200 },
-        { field: "update", headerName: "Update", width: 200,
+        {
+            field: "update",
+            headerName: "Update",
+            width: 200,
             renderCell: (params: GridCellParams) => (
                 <Button
                     variant="contained"
@@ -312,9 +315,7 @@ function Participant() {
                 .toLowerCase()
                 .includes(searchText.toLowerCase()) ||
             participant.disciplines.some((discipline) =>
-                discipline.name
-                .toLowerCase()
-                .includes(searchText.toLowerCase())
+                discipline.name.toLowerCase().includes(searchText.toLowerCase())
             )
     );
 
@@ -343,7 +344,7 @@ function Participant() {
                 }}
             >
                 <Typography sx={{ fontSize: "2em" }}>
-                    Participants list and CRUD operations
+                    Participants list and Crud operations
                 </Typography>
 
                 <br />
@@ -361,14 +362,14 @@ function Participant() {
                         label="Search"
                         variant="outlined"
                         value={searchText}
-                        onChange={(e) => handleSearchChange(e)}
+                        onChange={(e) => setSearchText(e.target.value)}
                     />
 
                     <Button
                         onClick={handleOpenPost}
                         variant={"outlined"}
                     >
-                        Create new participant
+                        Create new Participant
                     </Button>
                 </div>
 

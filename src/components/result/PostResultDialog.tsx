@@ -1,10 +1,20 @@
-import { ChangeEvent, useState } from "react";
-import { TCreateResult } from "../../types/result.type.ts";
-import { TResultsType } from "../../types/discipline.type.ts";
-import { Dialog, DialogActions, DialogContent, TextField, Button, Grid, MenuItem, DialogTitle } from "@mui/material";
-import LoadingSpinner from "../LoadingSpinner.tsx";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    TextField,
+    MenuItem
+} from "@mui/material";
 import useDiscipline from "../../hooks/useDiscipline.tsx";
+
+import { useState } from "react";
+import LoadingSpinner from "../LoadingSpinner.tsx";
+import { TCreateResult } from "../../types/result.type.ts";
 import useParticipant from "../../hooks/useParticipant.tsx";
+import { TResultsType } from "../../types/discipline.type.ts";
 
 type TPostResultDialogProps = {
     open: boolean;
@@ -19,9 +29,14 @@ type TPostResultDialogProps = {
  * @param createResult
  * @constructor
  */
-function PostResultDialog({open, handleClose, createResult}: TPostResultDialogProps) {
-    const {discipline, isLoading: disciplineLoading} = useDiscipline();
-    const {participants, isLoading: participantsLoading} = useParticipant();
+function PostResultDialog({
+                              open,
+                              handleClose,
+                              createResult
+                          }: TPostResultDialogProps) {
+    const { discipline, isLoading: disciplineLoading } = useDiscipline();
+
+    const { participants, isLoading: participantsLoading } = useParticipant();
 
     const [selectedParticipant, setSelectedParticipant] = useState<number>(0);
     const [selectedDiscipline, setSelectedDiscipline] = useState<number>(0);
@@ -39,66 +54,6 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
 
     //points
     const [points, setPoints] = useState<number>(0);
-
-    const handleParticipantChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setSelectedParticipant(Number(e.target.value));
-    };
-
-    const handleDisciplineChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setSelectedDiscipline(Number(e.target.value));
-    };
-
-    const handleResultDataChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setResultDate(e.target.value as TResultsType);
-    };
-
-    const handleHourChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setHour(Number(e.target.value));
-    };
-
-    const handleMinutesChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setMinutes(Number(e.target.value));
-    };
-
-    const handleSecondsChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setSeconds(Number(e.target.value));
-    };
-
-    const handleHundredthsChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setHundredths(Number(e.target.value));
-    };
-
-    const handleMeterChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setMeter(Number(e.target.value));
-    };
-
-    const handleCentimetersChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setCentimeters(Number(e.target.value));
-    };
-
-    const handlePointsChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setPoints(Number(e.target.value));
-    };
 
     const handleCreate = () => {
         const newResult: TCreateResult = {
@@ -142,7 +97,7 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                 onClose={handleClose}
                 fullWidth
             >
-                <DialogTitle>Create new result</DialogTitle>
+                <DialogTitle>Create new Result</DialogTitle>
                 <br />
                 <DialogContent>
                     <Grid
@@ -160,7 +115,11 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                 variant="outlined"
                                 name="participant"
                                 value={selectedParticipant}
-                                onChange={(e) => handleParticipantChange(e)}
+                                onChange={(e) =>
+                                    setSelectedParticipant(
+                                        Number(e.target.value)
+                                    )
+                                }
                             >
                                 {participants.map((par) => (
                                     <MenuItem value={par.id}>
@@ -182,7 +141,11 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                 name="resultDate"
                                 InputLabelProps={{ shrink: true }}
                                 value={resultDate}
-                                onChange={(e) => handleResultDataChange(e)}
+                                onChange={(e) =>
+                                    setResultDate(
+                                        e.target.value as TResultsType
+                                    )
+                                }
                             />
                         </Grid>
 
@@ -197,7 +160,11 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                 variant="outlined"
                                 name="discipline"
                                 value={selectedDiscipline}
-                                onChange={(e) => handleDisciplineChange(e)}
+                                onChange={(e) =>
+                                    setSelectedDiscipline(
+                                        Number(e.target.value)
+                                    )
+                                }
                             >
                                 {discipline.map((dic) => (
                                     <MenuItem value={dic.id}>
@@ -224,7 +191,9 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                                 name="points"
                                                 value={points}
                                                 onChange={(e) =>
-                                                    handlePointsChange(e)
+                                                    setPoints(
+                                                        Number(e.target.value)
+                                                    )
                                                 }
                                             />
                                         </Grid>
@@ -246,7 +215,9 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                                 name="hour"
                                                 value={hour}
                                                 onChange={(e) =>
-                                                    handleHourChange(e)
+                                                    setHour(
+                                                        Number(e.target.value)
+                                                    )
                                                 }
                                             />
                                         </Grid>
@@ -263,7 +234,9 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                                 name="minutes"
                                                 value={minutes}
                                                 onChange={(e) =>
-                                                    handleMinutesChange(e)
+                                                    setMinutes(
+                                                        Number(e.target.value)
+                                                    )
                                                 }
                                             />
                                         </Grid>
@@ -280,7 +253,9 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                                 name="minutes"
                                                 value={seconds}
                                                 onChange={(e) =>
-                                                    handleSecondsChange(e)
+                                                    setSeconds(
+                                                        Number(e.target.value)
+                                                    )
                                                 }
                                             />
                                         </Grid>
@@ -297,7 +272,9 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                                 name="hundredths"
                                                 value={hundredths}
                                                 onChange={(e) =>
-                                                    handleHundredthsChange(e)
+                                                    setHundredths(
+                                                        Number(e.target.value)
+                                                    )
                                                 }
                                             />
                                         </Grid>
@@ -319,7 +296,9 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                                 name="meter"
                                                 value={meter}
                                                 onChange={(e) =>
-                                                    handleMeterChange(e)
+                                                    setMeter(
+                                                        Number(e.target.value)
+                                                    )
                                                 }
                                             />
                                         </Grid>
@@ -336,7 +315,9 @@ function PostResultDialog({open, handleClose, createResult}: TPostResultDialogPr
                                                 name="centimeters"
                                                 value={centimeters}
                                                 onChange={(e) =>
-                                                    handleCentimetersChange(e)
+                                                    setCentimeters(
+                                                        Number(e.target.value)
+                                                    )
                                                 }
                                             />
                                         </Grid>
